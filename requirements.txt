@@ -6,6 +6,3 @@ streamlit
 pandas-profiling
 streamlit-pandas-profiling
 xlrd
-sys
-os
-sqlite3
