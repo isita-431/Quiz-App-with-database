@@ -5,6 +5,7 @@ matplotlib
 streamlit
 pandas-profiling
 streamlit-pandas-profiling
-openpyxl
 xlrd
+sys
+os
 sqlite3
