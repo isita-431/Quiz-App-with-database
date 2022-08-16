@@ -7,3 +7,4 @@ pandas-profiling
 streamlit-pandas-profiling
 openpyxl
 xlrd
+sqlite3
