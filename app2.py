@@ -71,7 +71,7 @@ with st.form(key='quiz form'):
     submission = st.form_submit_button(label='Submit')
     # create_csv()
     if submission == True:
-        addData(name,a,b,c,d,e)
+#         addData(name,a,b,c,d,e)
         update_csv(name,a,b,c,d,e)
 
 # def display(col_name):
