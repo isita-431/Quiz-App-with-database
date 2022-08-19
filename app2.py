@@ -8,21 +8,21 @@ import streamlit.components.v1 as stc
 import matplotlib.pyplot as plt
 import sqlite3
 import csv
-conn = sqlite3.connect('data.db',check_same_thread=False)
-cur = conn.cursor()
+# conn = sqlite3.connect('data.db',check_same_thread=False)
+# cur = conn.cursor()
 st.set_page_config(page_title='Quiz',layout='wide')
 
 st.title('QUIZ APP')
 
 
-def addData(name,a,b,c,d,e):
-	cur.execute("""create table if not exists clg_form(name text(10),q1 text(10),q2 text(10),q3 text(10),q4 text(10),q5 text(10));""")
-	# st.write("""create table if not exists clg_form(name text(10),q1 text(10),q2 text(10),q3 text(10),q4 text(10),q5 text(10));""")
-	# st.write("INSERT INTO clg_form values"+str((name,a[0],b[0],c[0],d[0],e[0])))
-	cur.execute("INSERT INTO clg_form values"+str((name,a[0],b[0],c[0],d[0],e[0]))+';')
-	conn.commit()
-	conn.close()
-	st.success('Successfully submitted')
+# def addData(name,a,b,c,d,e):
+# 	cur.execute("""create table if not exists clg_form(name text(10),q1 text(10),q2 text(10),q3 text(10),q4 text(10),q5 text(10));""")
+# 	# st.write("""create table if not exists clg_form(name text(10),q1 text(10),q2 text(10),q3 text(10),q4 text(10),q5 text(10));""")
+# 	# st.write("INSERT INTO clg_form values"+str((name,a[0],b[0],c[0],d[0],e[0])))
+# 	cur.execute("INSERT INTO clg_form values"+str((name,a[0],b[0],c[0],d[0],e[0]))+';')
+# 	conn.commit()
+# 	conn.close()
+# 	st.success('Successfully submitted')
     
 # def create_csv():
 #     with open('output.csv', 'a+',  newline = '') as file_output:
