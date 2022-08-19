@@ -85,42 +85,85 @@ df = pd.DataFrame(SQL_Query, columns=['name','q1','q2','q3','q4','q5'])
 
 # def display(col_name):
 #     cur.execute("""select """+col_name+' from clg_form;')
+# st.dataframe(df)
+# st.dataframe(df['q1'].value_counts())
+list1,list2 =[],[]
+for i in ['q1','q2','q3','q4','q5']:
+    # st.write(i)
+    # st.write(df['q1'].value_counts()['right'])
+    # st.write('right' in df[i].value_counts().index)
+    if 'right' in df[i].value_counts().index:
+        list1.append(df[i].value_counts()['right'])
+    else:
+        list1.append(0)
+    if 'wrong' in df[i].value_counts().index:
+        list2.append(df[i].value_counts()['wrong'])
+    else:
+        list2.append(0)
+conn.close()
+
+# list1 = [df['q1'].value_counts()['right'],df['q2'].value_counts()['right'],df['q3'].value_counts()['right'],df['q4'].value_counts()['right'],df['q5'].value_counts()['right']]
+# list2 = [df['q1'].value_counts().loc['wrong'],df['q2'].value_counts().loc['wrong'],df['q3'].value_counts().loc['wrong'],df['q4'].value_counts().loc['wrong'],df['q5'].value_counts().loc['wrong']]
+
 b = st.button('click here for result summary : ')
 if b:
-    st.write('First Question :')
-    arr = df['q1']
-    fig, ax = plt.subplots()
-    ax.bar(arr.value_counts().index,arr.value_counts())
-    plt.figure(figsize=(6,8))
-    st.pyplot(fig)  
-    st.write('Second Question :')
-    arr2 = df['q2']
-    fig, ax = plt.subplots()
-    ax.bar(arr2.value_counts().index,arr2.value_counts())
-    plt.figure(figsize=(6,8))
-    st.pyplot(fig)  
-    st.write('Third Question :')
-    arr3 = df['q3']
-    fig, ax = plt.subplots()
-    ax.bar(arr3.value_counts().index,arr3.value_counts())
-    plt.figure(figsize=(6,8))
-    st.pyplot(fig)  
-    st.write('Fourth Question :')
-    arr4 = df['q4']
-    fig, ax = plt.subplots()
-    ax.bar(arr4.value_counts().index,arr4.value_counts())
-    plt.figure(figsize=(6,8))
-    st.pyplot(fig)  
-    st.write('Fifth Question :')
-    arr5 = df['q5']
-    fig, ax = plt.subplots()
-    ax.bar(arr5.value_counts().index,arr5.value_counts())
-    plt.figure(figsize=(2,2))
-    st.pyplot(fig)  
-    # arr = df['q5']
-    # fig, ax = plt.subplots(figsize=(0.2,0.2))
+    st.write('summary of right answers for each question :')
+    d1 = pd.DataFrame(list1,index=['q1','q2','q3','q4','q5'])
+    d2 = pd.DataFrame(list2,index=['q1','q2','q3','q4','q5'])
+    st.bar_chart(d1)
+    st.write('summary of wrong answers for each question :')
+    st.bar_chart(d2)
+
+conn = sqlite3.connect('data.db',check_same_thread=False)
+cur = conn.cursor()
+code = st.text_input('enter the code')
+st.write(code.strip() == 'ashclear')
+if code.strip() == 'ashclear':
+    cur.execute("""delete from clg_form;""")
+conn.commit()
+conn.close()
+
+
+
+
+        
+
+
+    # st.write('First Question :')
+    # arr = df['q1']
+    # fig, ax = plt.subplots()
     # ax.bar(arr.value_counts().index,arr.value_counts())
+    # plt.figure(figsize=(6,8))
+    # st.pyplot(fig)  
+    # st.write('Second Question :')
+    # arr2 = df['q2']
+    # fig, ax = plt.subplots()
+    # ax.bar(arr2.value_counts().index,arr2.value_counts())
+    # plt.figure(figsize=(6,8))
+    # st.pyplot(fig)  
+    # st.write('Third Question :')
+    # arr3 = df['q3']
+    # fig, ax = plt.subplots()
+    # ax.bar(arr3.value_counts().index,arr3.value_counts())
+    # plt.figure(figsize=(6,8))
+    # st.pyplot(fig)  
+    # st.write('Fourth Question :')
+    # arr4 = df['q4']
+    # fig, ax = plt.subplots()
+    # ax.bar(arr4.value_counts().index,arr4.value_counts())
+    # plt.figure(figsize=(6,8))
+    # st.pyplot(fig)  
+    # st.write('Fifth Question :')
+    # arr5 = df['q5']
+    # fig, ax = plt.subplots()
+    # ax.bar(arr5.value_counts().index,arr5.value_counts())
     # plt.figure(figsize=(2,2))
     # st.pyplot(fig)  
+    # # arr = df['q5']
+    # # fig, ax = plt.subplots(figsize=(0.2,0.2))
+    # # ax.bar(arr.value_counts().index,arr.value_counts())
+    # # plt.figure(figsize=(2,2))
+    # # st.pyplot(fig)  
+    
     
     
